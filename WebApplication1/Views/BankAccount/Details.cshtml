@@ -1,0 +1,42 @@
+﻿@model WebApplication1.Models.Account
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Account</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AcctNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AcctNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AcctBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AcctBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AcctType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AcctType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AcctNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

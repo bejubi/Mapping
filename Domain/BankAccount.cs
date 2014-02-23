@@ -8,7 +8,7 @@ namespace Domain
 {
     public class BankAccount
     {
-        public string AccountNumber { get; set; }
+        public int AccountNumber { get; set; }
         public Accountholder PrimaryAccountholder { get; set; }
         public AccountType BankAccountType { get; set; }
         public decimal Balance { get; set; }

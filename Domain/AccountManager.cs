@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
+    // HACK: this is a pretty silly, one-instance implementation, but I'm not interested in this management logic at the moment
     public static class AccountManager
     {
+        private static BankAccount[] _bankAccounts;
+
         public static BankAccount[] GetBankAccounts()
         {
-            return new BankAccount[]
+            if (_bankAccounts != null) return _bankAccounts;
+
+            _bankAccounts = new BankAccount[]
             {
                 new BankAccount
                 {
-                    AccountNumber = "0001",
+                    AccountNumber = 1,
                     BankAccountType = AccountType.Checking,
                     Balance = 29.99M,
                     PrimaryAccountholder = new Accountholder
@@ -33,7 +38,7 @@ namespace Domain
                 },
                 new BankAccount
                 {
-                    AccountNumber = "0002",
+                    AccountNumber = 2,
                     BankAccountType = AccountType.Savings,
                     Balance = 129.99M,
                     PrimaryAccountholder = new Accountholder
@@ -51,11 +56,41 @@ namespace Domain
                     }
                 },
             };
+
+            return _bankAccounts;
         }
 
-        public static void UpdateBankAccount(BankAccount account)
+        public static BankAccount GetBankAccount(int accountNumber)
         {
-            throw new NotImplementedException();
+            var bankAccounts = GetBankAccounts();
+            var bankAccount = bankAccounts.SingleOrDefault(x => x.AccountNumber == accountNumber);
+
+            return bankAccount;
+        }
+
+        public static void AddBankAccount(BankAccount newBankAccount)
+        {
+            var bankAccounts = GetBankAccounts().ToList();
+            bankAccounts.Add(newBankAccount);
+
+            _bankAccounts = bankAccounts.ToArray();
+        }
+
+        public static void UpdateBankAccount(BankAccount source)
+        {
+            var bankAccount = GetBankAccount(source.AccountNumber);
+
+            bankAccount.Balance = source.Balance;
+            bankAccount.BankAccountType = source.BankAccountType;
+            bankAccount.PrimaryAccountholder = source.PrimaryAccountholder;
+        }
+
+        public static void DeleteBankAccount(int id)
+        {
+            var bankAccounts = GetBankAccounts().ToList();
+            bankAccounts.Remove(GetBankAccount(id));
+
+            _bankAccounts = bankAccounts.ToArray();
         }
     }
 }

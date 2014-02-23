@@ -13,16 +13,18 @@ namespace WebApplication1.Controllers
         // GET: /Clean/
         public ActionResult Index()
         {
-            var serviceAccounts = Domain.AccountManager.GetBankAccounts().Map();
+            var modelAccounts = Domain.AccountManager.GetBankAccounts().Map();
 
-            return View(serviceAccounts);
+            return View(modelAccounts);
         }
 
         //
         // GET: /Clean/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var modelAccount = Domain.AccountManager.GetBankAccount(id).Map();
+
+            return View(modelAccount);
         }
 
         //
@@ -39,7 +41,25 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                var modelAccount = new Models.Account
+                {
+                    AcctNumber = Convert.ToInt32(collection["AcctNumber"]),
+                    AcctType = collection["AcctType"],
+                    AcctBalance = Convert.ToDecimal(collection["AcctBalance"]),
+                    AcctHolder = new Models.Person
+                    {
+                        FName = "New",
+                        LName = "Person",
+                        Address1 = "111 Main St",
+                        Address2 = "Apt 42",
+                        City = "Any City",
+                        State = "WI",
+                        Zip = "12345",
+                        Country = "USA",
+                    }
+                };
+
+                Domain.AccountManager.AddBankAccount(modelAccount.Map());
 
                 return RedirectToAction("Index");
             }
@@ -53,7 +73,9 @@ namespace WebApplication1.Controllers
         // GET: /Clean/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var modelAccount = Domain.AccountManager.GetBankAccount(id).Map();
+
+            return View(modelAccount);
         }
 
         //
@@ -63,7 +85,14 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                var modelAccount = Domain.AccountManager.GetBankAccount(id).Map();
+
+                modelAccount.AcctBalance = Convert.ToDecimal(collection["AcctBalance"]);
+                modelAccount.AcctType = collection["AcctType"];
+
+                var domainAccount = modelAccount.Map();
+
+                Domain.AccountManager.UpdateBankAccount(domainAccount);
 
                 return RedirectToAction("Index");
             }
@@ -77,7 +106,9 @@ namespace WebApplication1.Controllers
         // GET: /Clean/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var modelAccount = Domain.AccountManager.GetBankAccount(id).Map();
+
+            return View(modelAccount);
         }
 
         //
@@ -87,7 +118,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                Domain.AccountManager.DeleteBankAccount(id);
 
                 return RedirectToAction("Index");
             }
