@@ -9,33 +9,23 @@ namespace WebApplication1.Controllers
 {
     public class BankAccountController : Controller
     {
-        //
-        // GET: /Clean/
         public ActionResult Index()
         {
             var modelAccounts = Domain.AccountManager.GetBankAccounts().Map();
-
             return View(modelAccounts);
         }
 
-        //
-        // GET: /Clean/Details/5
         public ActionResult Details(int id)
         {
             var modelAccount = Domain.AccountManager.GetBankAccount(id).Map();
-
             return View(modelAccount);
         }
 
-        //
-        // GET: /Clean/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /Clean/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -69,17 +59,12 @@ namespace WebApplication1.Controllers
             }
         }
 
-        //
-        // GET: /Clean/Edit/5
         public ActionResult Edit(int id)
         {
             var modelAccount = Domain.AccountManager.GetBankAccount(id).Map();
-
             return View(modelAccount);
         }
 
-        //
-        // POST: /Clean/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -102,24 +87,18 @@ namespace WebApplication1.Controllers
             }
         }
 
-        //
-        // GET: /Clean/Delete/5
         public ActionResult Delete(int id)
         {
             var modelAccount = Domain.AccountManager.GetBankAccount(id).Map();
-
             return View(modelAccount);
         }
 
-        //
-        // POST: /Clean/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 Domain.AccountManager.DeleteBankAccount(id);
-
                 return RedirectToAction("Index");
             }
             catch

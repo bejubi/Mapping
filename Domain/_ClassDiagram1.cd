@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Domain.Accountholder">
+    <Position X="4.5" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Accountholder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.AccountManager">
+    <Position X="0.5" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAIQAAAAABAAAAAAAAAgAA=</HashCode>
+      <FileName>AccountManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.BankAccount">
+    <Position X="4.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAgAAAAAAAgAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>BankAccount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Address">
+    <Position X="4.5" Y="4.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAAAAAABAAQAAA=</HashCode>
+      <FileName>Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Domain.AccountType">
+    <Position X="2.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAABA=</HashCode>
+      <FileName>AccountType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
